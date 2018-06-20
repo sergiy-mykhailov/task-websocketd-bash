@@ -1,0 +1,14 @@
+{
+  "name": "websocketd-bash",
+  "version": "0.0.1",
+  "description": "Bash session using “websocketd”",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": " "
+  },
+  "author": "",
+  "license": "ISC"
+}

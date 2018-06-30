@@ -13,16 +13,31 @@ ctx.fillStyle = "#000000";
 let x = 0;
 let y = 1;
 
-function draw(data) {
-    x++;
+document.getElementById('websocketd').appendChild(canvas);
 
-    if (data === '1') {
-        ctx.fillRect(x, y, 1, 1);
+function draw(data) {
+    if (y > HEIGHT) {
+        return;
     }
 
-    if (x >= WIDTH) {
-        x = 0;
-        y++;
+    const strData = ('00000000' + Number.parseInt(data).toString(2));
+    const binData = strData.slice(-8).split('');
+
+    for (let i = 0; i < binData.length; i++) {
+        x++;
+
+        if (binData[i] === '1') {
+            ctx.fillRect(x, y, 1, 1);
+        }
+
+        if (x >= WIDTH) {
+            x = 0;
+            y++;
+        }
+
+        if (y > HEIGHT) {
+            break;
+        }
     }
 }
 
@@ -33,5 +48,5 @@ ws.onmessage = function(event) {
 };
 
 ws.onclose = () => {
-    document.getElementById('websocketd').appendChild(canvas);
+    // document.getElementById('websocketd').appendChild(canvas);
 };
